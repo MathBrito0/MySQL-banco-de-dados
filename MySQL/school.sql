@@ -72,3 +72,32 @@ SELECT
 FROM aluno a
 INNER JOIN matricula m ON a.id_aluno = m.id_aluno
 INNER JOIN turma t ON m.id_turma = t.id_turma;
+
+
+
+-- Agregação com GROUP BY
+SELECT
+  t.nome_disciplina,
+  COUNT(m.id_aluno) AS Total_Alunos
+FROM turma t
+INNER JOIN matricula m ON t.id_turma = m.id_turma
+GROUP BY t.nome_disciplina;
+
+
+-- Pós-Agregação
+SELECT
+  t.nome_disciplina,
+  COUNT(m.id_aluno) AS Total_Alunos
+FROM turma t
+INNER JOIN matricula m ON t.id_turma = m.id_turma
+GROUP BY t.nome_disciplina
+HAVING COUNT(m.id_aluno) > 1;
+
+
+-- Consulta para Secretaria
+SELECT
+  nome,
+  data_nascimento
+FROM aluno
+ORDER BY data_nascimento ASC
+LIMIT 3;
